@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Aggiungi immagini per la terza griglia
                 for (let i = 87; i <= 116; i++) {
                     const image = document.createElement('img');
-                    image.src = `imggg/${i}.jpg`;
+                    image.src = `imgggg/${i}.jpg`;
                     image.alt = `Image ${i}`;
                     imageGrid.appendChild(image);
                 }
