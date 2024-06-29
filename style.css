@@ -524,10 +524,6 @@ h1 {
         max-height: 80vh;
     }
 
-    #hide {
-        display: none; /* Nascondiamo la colonna References */
-    }
-    
     
     .column:nth-child(2) {
         width: 15%; /* Larghezza fissa di 300px per la quinta colonna */
@@ -583,6 +579,16 @@ h1 {
     .column ul li.spppp {
         margin-bottom: 90px; /* Aggiungi spaziatura solo all'ultimo elemento della lista */
     }
+    .column:nth-child(2) {
+        width: 30%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+    .column:nth-child(3) {
+        width: 40%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+    
+    .column:nth-child(5) {
+        width: 50%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
 }
 
 
@@ -596,5 +602,53 @@ h1 {
 
 
 
+  @media screen and (min-width: 1215px) and (max-width: 1300px) {
+    #hide {
+        display: none; /* Nascondiamo la colonna References */
+    }
+ 
+    .column ul li.spazio {
+        margin-bottom: 13px; /* Aggiungi spaziatura solo all'ultimo elemento della lista */
+    }
+    .column:nth-child(2) {
+        width: 30%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+    .column:nth-child(3) {
+        width: 40%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+    
+    .column:nth-child(5) {
+        width: 50%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+  }
+
+  @media screen and (min-width: 850px) and (max-width: 1215px) {
+    #hide {
+        display: none; /* Nascondiamo la colonna References */
+    }
+ 
+    .column ul li.spazio {
+        margin-bottom: 13px; /* Aggiungi spaziatura solo all'ultimo elemento della lista */
+    }
+    .column:nth-child(2) {
+        width: 40%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+    .column:nth-child(3) {
+        width: 50%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+    
+    .column:nth-child(5) {
+        width: 50%; /* Larghezza fissa di 300px per la quinta colonna */
+    }
+  }
 
 
+
+
+
+
+
+
+
+
+  
