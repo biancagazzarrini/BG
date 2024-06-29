@@ -638,7 +638,7 @@ h1 {
     }
     
     .column:nth-child(5) {
-        width: 50%; /* Larghezza fissa di 300px per la quinta colonna */
+        width: 60%; /* Larghezza fissa di 300px per la quinta colonna */
     }
   }
 

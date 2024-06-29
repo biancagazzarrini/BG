@@ -229,5 +229,29 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+function updateParagraphText() {
+    const paragraph = document.getElementById('cambio');
+    const width = window.innerWidth;
+
+    if (width <= 1200) {
+        paragraph.textContent = 'The geometricity of my fluid body';
+    } 
+}
+
+window.addEventListener('resize', updateParagraphText);
+window.addEventListener('load', updateParagraphText);
+
+
+function updateParagraphText2() {
+    const paragraph = document.getElementById('cambiare');
+    const width = window.innerWidth;
+
+    if (width <= 1200) {
+        paragraph.textContent = 'Redesigning Roberto Capucci';
+    } 
+}
+
+window.addEventListener('resize', updateParagraphText2);
+window.addEventListener('load', updateParagraphText2);
 
 
