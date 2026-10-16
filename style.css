@@ -1,3 +1,4 @@
+ 
 body, html {
     margin: 0;
     padding: 0;
@@ -307,7 +308,7 @@ h1 {
 
 .right-box {
      /* Imposta una larghezza massima del 50% per la right-box */
-    height: auto;
+    height: 100hv;
     max-height: 65vh;
     padding-bottom: 1px;
     overflow-y: auto; /* Abilita lo scrolling verticale */
@@ -405,7 +406,7 @@ h1 {
 }
 
 .column ul li.sppp {
-    margin-bottom: 72px; /* Aggiungi spaziatura solo all'ultimo elemento della lista */
+    margin-bottom: 115px; /* Aggiungi spaziatura solo all'ultimo elemento della lista */
 }
 
 .column ul li.spppp {
@@ -642,13 +643,307 @@ h1 {
     }
   }
 
+/* Effetto testo che si inverte sopra le immagini */
+.index-title {
+    color: white;
+    mix-blend-mode: difference;
+    position: relative;
+    z-index: 2;
+}
 
 
 
+/* ==========================================
+   WORK — LAYOUT PRINCIPALE
+   ========================================== */
 
-
-
-
-
-
+   body.work-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  body.work-page .container {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: calc(100vh - 120px);
+    margin: 120px 0 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  /* Colonna sinistra: elenco dei progetti */
+  
+  body.work-page .left-box {
+    display: block;
+    flex: 0 0 55%;
+    width: 55%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-height: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 0 0 1%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  body.work-page .left-box::-webkit-scrollbar,
+  body.work-page .right-box::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Intestazioni e righe dei progetti */
+  
+  body.work-page .work-headings,
+  body.work-page .work-project {
+    display: grid;
+    grid-template-columns: 10% 20% 30% 15% 25%;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: start;
+  }
+  
+  body.work-page .work-headings {
+    margin: 0 0 8px;
+  }
+  
+  body.work-page .work-headings h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: lighter;
+  }
+  
+  body.work-page .work-project {
+    margin: 0 0 14px;
+    padding: 0;
+  }
+  
+  body.work-page .work-column {
+    min-width: 0;
+    padding-right: 5px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: lighter;
+    line-height: normal;
+    overflow-wrap: anywhere;
+  }
+  
+  body.work-page .work-entry {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body.work-page .work-entry a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  body.work-page .work-entry.clickable {
+    cursor: pointer;
+  }
+  
+  body.work-page .work-entry:hover,
+  body.work-page .work-entry.clicked,
+  body.work-page .work-entry.active,
+  body.work-page .work-entry.underline {
+    text-decoration: underline;
+  }
+  
+  /* ==========================================
+     WORK — COLONNA DESTRA
+     ========================================== */
+  
+  body.work-page .right-box {
+    display: flex;
+    flex: 0 0 45%;
+    flex-direction: column;
+    width: 45%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-height: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 1% 0 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  /* Immagine iniziale: più grande su desktop */
+  
+  body.work-page .right-box > img {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    height: auto;
+    object-fit: contain;
+    object-position: top left;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Galleria verticale */
+  
+  body.work-page .right-box #imageGrid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+  
+  body.work-page .right-box #imageGrid img {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    box-sizing: border-box;
+    margin: 0 0 24px;
+    padding: 0;
+  }
+  
+  body.work-page .right-box #imageGrid img:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Spazio attorno alle immagini solo nella galleria */
+  
+  body.work-page.project-view .right-box #imageGrid {
+    padding: 20px 24px 24px;
+  }
+  
+  /* ==========================================
+     WORK — FRECCIA DI RITORNO
+     Solo telefono e solo nella galleria
+     ========================================== */
+  
+  body.work-page .project-back-button {
+    display: none !important;
+  }
+  
+  @media screen and (max-width: 767px) {
+    body.work-page.project-view .project-back-button {
+      position: fixed;
+      z-index: 9999;
+      left: 50%;
+      bottom: 8px;
+      transform: translateX(-50%);
+  
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+  
+      width: 22px;
+      height: 20px;
+      padding: 0;
+      margin: 0;
+  
+      border: none;
+      background: white;
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+    }
+  }
+  
+  /* ==========================================
+     WORK — TABLET E TELEFONO
+     ========================================== */
+  
+  @media screen and (max-width: 780px) {
+    body.work-page {
+      overflow: hidden;
+    }
+  
+    body.work-page .container {
+      display: block;
+      height: calc(100vh - 100px);
+      margin-top: 100px;
+      overflow: hidden;
+    }
+  
+    body.work-page .left-box {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      padding: 0 1%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  
+    body.work-page .work-headings,
+    body.work-page .work-project {
+      grid-template-columns: 10% 20% 30% 15% 25%;
+    }
+  
+    body.work-page .work-column {
+      padding-right: 3px;
+      font-size: 10px;
+      line-height: 1.2;
+    }
+  
+    body.work-page .right-box {
+      display: none;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  
+    body.work-page.mobile-gallery .left-box {
+      display: none;
+    }
+  
+    body.work-page.mobile-gallery .right-box {
+      display: flex;
+    }
+  
+    body.work-page .right-box > img {
+      width: 100%;
+      max-width: 100%;
+      max-height: none;
+      padding: 0;
+    }
+  
+    body.work-page.project-view .right-box #imageGrid {
+      padding: 16px 16px 56px;
+    }
+  
+    body.work-page .right-box #imageGrid img {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    body.work-page .right-box #imageGrid img:last-child {
+      margin-bottom: 0;
+    }
+  }
   
