@@ -1,257 +1,345 @@
-// video about
-function playVideo() {
-    var video = document.getElementById("myVideo");
-    video.play();
 
-    // Nascondi il pulsante di play dopo aver avviato la riproduzione
-    var playButton = document.getElementById("playButton");
-    playButton.style.display = "none";
-}
+/* ==========================================
+   NAVIGAZIONE E VIDEO
+   ========================================== */
 
-// landing page
-function redirectToHome() {
+   function redirectToHome() {
     window.location.href = "home.html";
 }
 
+function playVideo() {
+    const video = document.getElementById("myVideo");
+    if (video) video.play();
 
-document.addEventListener('DOMContentLoaded', function () {
-    const navbar = document.querySelector('nav');
-    const leftBox = document.getElementById('leftBox');
-    const rightBox = document.getElementById('rightBox');
-
-    window.addEventListener('scroll', function () {
-        const navbarHeight = navbar.offsetHeight;
-        const leftBoxTop = leftBox.getBoundingClientRect().top;
-        const rightBoxTop = rightBox.getBoundingClientRect().top;
-
-        // Verifica se il box di sinistra è sotto la navbar
-        if (leftBoxTop < navbarHeight) {
-            navbar.style.color = 'transparent'; // Rendi il testo trasparente
-            navbar.style.webkitTextFillColor = 'red'; // Cambia il colore del testo usando una proprietà specifica di WebKit
-            navbar.style.mixBlendMode = 'difference'; // Applica l'effetto di esclusione
-        } else if (rightBoxTop < navbarHeight) {
-            navbar.style.color = 'blue'; // Cambia il colore della navbar per il box di destra
-            navbar.style.mixBlendMode = 'difference'; // Applica l'effetto di esclusione
-        } else {
-            navbar.style.color = 'black'; // Ripristina il colore predefinito del testo
-            navbar.style.mixBlendMode = 'normal'; // Ripristina la modalità di miscelazione predefinita
-        }
-    });
-});
+    const button = document.getElementById("playButton");
+    if (button) button.style.display = "none";
+}
 
 
+/* ==========================================
+   WORK — PROGETTI E GALLERIE
+   ========================================== */
 
+document.addEventListener("DOMContentLoaded", function () {
+    const body = document.body;
 
+    // Esegui il codice solo nella pagina Work.
+    if (!body.classList.contains("work-page")) return;
 
-document.addEventListener("DOMContentLoaded", function() {
-    const clickableColumns = document.querySelectorAll('.clickable');
-    const rightBox = document.querySelector('.right-box img');
+    const leftBox = body.querySelector(".left-box");
+    const rightBox = body.querySelector(".right-box");
 
-    clickableColumns.forEach(column => {
-        column.addEventListener('click', function() {
-            const imagePath = column.dataset.image;
-            rightBox.src = imagePath;
-        });
-    });
-});
+    if (!leftBox || !rightBox) return;
 
+    const originalColumns = Array.from(leftBox.children)
+        .filter(element => element.classList.contains("column"));
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Trova tutte le voci cliccabili delle colonne REFERENCE e DESCRIPTION
-    var clickableItems = document.querySelectorAll(".clickable");
-
-    // Itera su ogni voce cliccabile
-    clickableItems.forEach(function(item) {
-        // Aggiungi un gestore di eventi per il clic
-        item.addEventListener("click", function() {
-            // Rimuovi la classe sottolineata da tutti gli elementi cliccabili
-            clickableItems.forEach(function(item) {
-                item.classList.remove("underline");
-            });
-
-            // Aggiungi la classe sottolineata all'elemento cliccato
-            item.classList.add("underline");
-
-            // Ottieni l'elenco di immagini associate dalla data attributo
-            var imageUrls = item.getAttribute("data-image").split(',');
-
-            // Trova il box destro
-            var rightBox = document.querySelector('.right-box');
-
-            // Svuota il contenuto del box destro
-            rightBox.innerHTML = '';
-
-            // Itera su ogni URL dell'immagine e crea un elemento immagine per ciascuno
-            imageUrls.forEach(function(url) {
-                var imageElement = document.createElement("img");
-                imageElement.src = url.trim(); // Rimuovi spazi bianchi intorno all'URL
-                imageElement.alt = "Image";
-
-                // Aggiungi un salto di riga prima di ogni immagine
-                rightBox.appendChild(document.createElement("br"));
-                
-                // Aggiungi l'immagine al box destro
-                rightBox.appendChild(imageElement);
-            });
-        });
-    });
-});
-
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    const clickableItems = document.querySelectorAll('.clickable');
-    const rightBoxImg = document.querySelector('.right-box img');
-
-    clickableItems.forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault(); // Previeni il comportamento predefinito del link
-
-            // Rimuovi la classe 'clicked' da tutti gli elementi cliccabili
-            clickableItems.forEach(element => {
-                element.classList.remove('clicked');
-            });
-
-            // Aggiungi la classe 'clicked' all'elemento cliccato
-            item.classList.add('clicked');
-
-            // Cambia l'immagine nel right-box
-            const imagePath = item.dataset.image;
-            rightBoxImg.src = imagePath;
-        });
-    });
-});
-
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    const nameItems = document.querySelectorAll('.column:nth-child(3) .clickable');
-    const rightBox = document.querySelector('.right-box');
-
-    nameItems.forEach(item => {
-        item.addEventListener('click', function(event) {
-            event.preventDefault(); // Previeni il comportamento predefinito del link
-
-            // Rimuovi la classe 'active' da tutti gli elementi 'clickable' nella colonna 'NAME'
-            nameItems.forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // Aggiungi la classe 'active' all'elemento cliccato
-            item.classList.add('active');
-
-            // Cancella il contenuto del right box
-            rightBox.innerHTML = '';
-
-            // Crea la griglia di immagini nel right box
-            const imageGrid = document.createElement('div');
-            imageGrid.classList.add('grid-container');
-
-            // Ottieni l'attributo 'data-type' dell'elemento cliccato
-            const dataType = item.getAttribute('data-type');
-
-            // Aggiungi immagini alla griglia in base al tipo di dati
-            if (dataType === 'griglia1') {
-                // Aggiungi immagini per la prima griglia
-                for (let i = 1; i <= 38; i++) {
-                    const image = document.createElement('img');
-                    image.src = `imggg/${i}.jpg`;
-                    image.alt = `Image ${i}`;
-                    imageGrid.appendChild(image);
-                }
-            } else if (dataType === 'griglia2') {
-                // Aggiungi immagini per la seconda griglia
-                for (let i = 39; i <= 62; i++) {
-                    const image = document.createElement('img');
-                    image.src = `imggg/${i}.jpg`;
-                    image.alt = `Image ${i}`;
-                    imageGrid.appendChild(image);
-                }
-            } else if (dataType === 'griglia3') {
-                // Aggiungi immagini per la terza griglia
-                for (let i = 63; i <= 86; i++) {
-                    const image = document.createElement('img');
-                    image.src = `imggg/${i}.jpg`;
-                    image.alt = `Image ${i}`;
-                    imageGrid.appendChild(image);
-                }
-            } else if (dataType === 'griglia4') {
-                // Aggiungi immagini per la terza griglia
-                for (let i = 87; i <= 116; i++) {
-                    const image = document.createElement('img');
-                    image.src = `imgggg/${i}.jpg`;
-                    image.alt = `Image ${i}`;
-                    imageGrid.appendChild(image);
-                }
-            }  
-            // Aggiungi la griglia di immagini al right box
-            rightBox.appendChild(imageGrid);
-        });
-    });
-});
-
-
-
-
-window.onload = function() {
-    var video = document.getElementById('myVideo');
-    if (window.innerWidth <= 600) {
-        video.play();
+    if (originalColumns.length !== 5) {
+        console.warn("Work: non sono state trovate le cinque colonne.");
+        return;
     }
-};
 
+    const projectNames = [
+        "BIGA. studio Branding",
+        "Academic project",
+        "The geometricity of my fluid body",
+        "Redesigning Roberto Capucci",
+        "SOULS",
+        "FW2024 - Seven Gauge"
+    ];
 
+    const groupSizes = [
+        [1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1],
+        [2, 3, 13, 8, 17, 16],
+        [2, 3, 13, 8, 17, 16]
+    ];
 
-document.addEventListener("DOMContentLoaded", function() {
-    const clickableItems = document.querySelectorAll('.clickable');
-    const rightBox = document.querySelector('.right-box');
-    const leftBox = document.querySelector('.left-box');
+    function getEntries(column) {
+        const list = column.querySelector("ul");
+        if (!list) return [];
 
-    clickableItems.forEach(item => {
-        item.addEventListener('click', function(event) {
-            // Previeni il comportamento predefinito del link
-            event.preventDefault(); 
-            
-            // Verifica se la larghezza dello schermo è inferiore a 780px
-            if (window.innerWidth <= 780) {
-                // Nascondi il left-box
-                leftBox.style.display = 'none';
-                
-                // Mostra il right-box
-                rightBox.style.display = 'block';
-                // Imposta la larghezza del right-box al 100% dello schermo
-                rightBox.style.width = '100%';
+        return Array.from(list.children).filter(item =>
+            item.tagName === "LI" &&
+            item.textContent.trim() !== ""
+        );
+    }
+
+    const entriesByColumn = originalColumns.map(getEntries);
+
+    // Controlla che le voci corrispondano ai gruppi attesi.
+    const valid = entriesByColumn.every((entries, index) => {
+        const expected = groupSizes[index].reduce(
+            (total, number) => total + number, 0
+        );
+        return entries.length === expected;
+    });
+
+    if (!valid) {
+        console.error(
+            "Work: il numero di voci non corrisponde ai gruppi previsti."
+        );
+        return;
+    }
+
+    const headings = originalColumns.map(column =>
+        column.querySelector("h2")?.textContent.trim() || ""
+    );
+
+    function createEntry(original) {
+        const entry = document.createElement("div");
+
+        entry.className = "work-entry";
+
+        // Conserva le classi e gli attributi originali.
+        original.classList.forEach(name => entry.classList.add(name));
+
+        Array.from(original.attributes).forEach(attribute => {
+            if (attribute.name !== "class") {
+                entry.setAttribute(attribute.name, attribute.value);
             }
         });
+
+        entry.innerHTML = original.innerHTML;
+        return entry;
+    }
+
+    // Intestazioni mostrate una sola volta.
+    const header = document.createElement("div");
+    header.className = "work-headings";
+
+    headings.forEach(name => {
+        const heading = document.createElement("h2");
+        heading.textContent = name;
+        header.appendChild(heading);
     });
+
+    // Raggruppa le voci in sei progetti.
+    const projects = [];
+    const cursors = [0, 0, 0, 0, 0];
+
+    for (let projectIndex = 0; projectIndex < 6; projectIndex++) {
+        const project = document.createElement("section");
+        project.className = "work-project";
+        project.dataset.project = String(projectIndex + 1);
+        project.setAttribute("aria-label", projectNames[projectIndex]);
+
+        for (let columnIndex = 0; columnIndex < 5; columnIndex++) {
+            const column = document.createElement("div");
+            column.className = "work-column";
+
+            const count = groupSizes[columnIndex][projectIndex];
+
+            for (let i = 0; i < count; i++) {
+                const original =
+                    entriesByColumn[columnIndex][cursors[columnIndex]++];
+
+                column.appendChild(createEntry(original));
+            }
+
+            project.appendChild(column);
+        }
+
+        projects.push(project);
+    }
+
+    leftBox.replaceChildren(header, ...projects);
+
+
+    /* ==========================================
+       PULSANTE DI RITORNO
+       ========================================== */
+
+    function removeBackButton() {
+        rightBox.querySelector(".project-back-button")?.remove();
+        body.classList.remove("project-view");
+    }
+
+    function addBackButton() {
+        removeBackButton();
+
+        body.classList.add("project-view");
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "project-back-button";
+        button.textContent = "←";
+        button.setAttribute("aria-label", "Torna a tutti i lavori");
+        button.title = "Torna a tutti i lavori";
+
+        button.addEventListener("click", function () {
+            removeBackButton();
+
+            // Ripristina la schermata iniziale di Work.
+            body.classList.remove("mobile-gallery");
+            leftBox.style.display = "";
+            rightBox.style.display = "";
+            rightBox.classList.remove("project-gallery");
+
+            // Ripristina l'immagine iniziale originale.
+            rightBox.replaceChildren();
+
+            const initialImage = document.createElement("img");
+            initialImage.src = "DSCF5232.jpg";
+            initialImage.alt = "Portfolio";
+            rightBox.appendChild(initialImage);
+
+            // Ripristina la griglia vuota prevista dalla pagina.
+            const emptyGrid = document.createElement("div");
+            emptyGrid.id = "imageGrid";
+            emptyGrid.className = "grid-container";
+            rightBox.appendChild(emptyGrid);
+
+            leftBox.scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        rightBox.appendChild(button);
+    }
+
+
+    /* ==========================================
+       VISUALIZZAZIONE DELLE IMMAGINI
+       ========================================== */
+
+    function showImages(paths) {
+        rightBox.replaceChildren();
+
+        const grid = document.createElement("div");
+        grid.id = "imageGrid";
+        grid.className = "grid-container";
+
+        paths.forEach(path => {
+            const cleanPath = path.trim();
+            if (!cleanPath) return;
+
+            const image = document.createElement("img");
+            image.src = cleanPath;
+            image.alt = "Portfolio image";
+            image.loading = "lazy";
+
+            grid.appendChild(image);
+        });
+
+        rightBox.appendChild(grid);
+
+        // La freccia compare soltanto nella schermata del progetto.
+        addBackButton();
+
+        if (window.innerWidth <= 780) {
+            body.classList.add("mobile-gallery");
+            rightBox.style.display = "block";
+            rightBox.style.width = "100%";
+            leftBox.style.display = "none";
+            rightBox.scrollTop = 0;
+        }
+    }
+
+
+    function showProjectGallery(type) {
+        const ranges = {
+            griglia1: { start: 1, end: 38, folder: "imggg" },
+            griglia2: { start: 39, end: 62, folder: "imggg" },
+            griglia3: { start: 63, end: 86, folder: "imggg" },
+            griglia4: { start: 87, end: 116, folder: "imgggg" }
+        };
+
+        const range = ranges[type];
+        if (!range) return;
+
+        const paths = [];
+
+        for (let i = range.start; i <= range.end; i++) {
+            paths.push(`${range.folder}/${i}.jpg`);
+        }
+
+        showImages(paths);
+    }
+
+
+    /* ==========================================
+       UN SOLO GESTORE PER I CLIC
+       ========================================== */
+
+    leftBox.addEventListener("click", function (event) {
+        const entry = event.target.closest(".work-entry.clickable");
+
+        if (!entry || !leftBox.contains(entry)) return;
+
+        event.preventDefault();
+
+        leftBox.querySelectorAll(".clicked, .active, .underline")
+            .forEach(element => {
+                element.classList.remove("clicked", "active", "underline");
+            });
+
+        entry.classList.add("clicked", "underline");
+
+        const type = entry.dataset.type;
+        const imageData = entry.dataset.image;
+
+        if (type) {
+            entry.classList.add("active");
+            showProjectGallery(type);
+        } else if (imageData) {
+            showImages(imageData.split(","));
+        }
+    });
+
+
+    /* ==========================================
+       NAVBAR
+       ========================================== */
+
+    const navbar = document.querySelector("nav");
+
+    if (navbar) {
+        window.addEventListener("scroll", function () {
+            const leftTop = leftBox.getBoundingClientRect().top;
+            const rightTop = rightBox.getBoundingClientRect().top;
+            const navbarHeight = navbar.offsetHeight;
+
+            if (leftTop < navbarHeight || rightTop < navbarHeight) {
+                navbar.style.mixBlendMode = "difference";
+            } else {
+                navbar.style.mixBlendMode = "normal";
+            }
+        });
+    }
 });
 
 
+/* ==========================================
+   VIDEO ABOUT — AUTOPLAY SU MOBILE
+   ========================================== */
+
+window.addEventListener("load", function () {
+    const video = document.getElementById("myVideo");
+
+    if (video && window.innerWidth <= 600) {
+        video.play().catch(() => {});
+    }
+});
+
+
+/* ==========================================
+   TESTI RESPONSIVE
+   ========================================== */
+
 function updateParagraphText() {
-    const paragraph = document.getElementById('cambio');
-    const width = window.innerWidth;
+    const paragraph = document.getElementById("cambio");
 
-    if (width <= 1200) {
-        paragraph.textContent = 'The geometricity of my fluid body';
-    } 
+    if (paragraph && window.innerWidth <= 1200) {
+        paragraph.textContent = "The geometricity of my fluid body";
+    }
+
+    const secondParagraph = document.getElementById("cambiare");
+
+    if (secondParagraph && window.innerWidth <= 1200) {
+        secondParagraph.textContent = "Redesigning Roberto Capucci";
+    }
 }
 
-window.addEventListener('resize', updateParagraphText);
-window.addEventListener('load', updateParagraphText);
-
-
-function updateParagraphText2() {
-    const paragraph = document.getElementById('cambiare');
-    const width = window.innerWidth;
-
-    if (width <= 1200) {
-        paragraph.textContent = 'Redesigning Roberto Capucci';
-    } 
-}
-
-window.addEventListener('resize', updateParagraphText2);
-window.addEventListener('load', updateParagraphText2);
-
-
+window.addEventListener("resize", updateParagraphText);
+window.addEventListener("load", updateParagraphText);
